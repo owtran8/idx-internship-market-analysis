@@ -1,0 +1,129 @@
+
+import pandas as pd 
+import numpy as np 
+import datetime 
+
+import csv
+import calendar 
+
+import pandas as pd
+
+"""
+# filled
+    # df202501 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202501_filled.csv", encoding="ISO-8859-1")
+
+# not filled 
+    #df202502 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202502.csv", encoding="ISO-8859-1")
+"""
+
+
+# =========================
+# 2024 Sold Files
+# =========================
+
+df202401 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202401_filled.csv", encoding="ISO-8859-1")
+df202402 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202402.csv", encoding="ISO-8859-1")
+df202403 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202403_filled.csv", encoding="ISO-8859-1")
+df202404 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202404_filled.csv", encoding="ISO-8859-1")
+df202405 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202405_filled.csv", encoding="ISO-8859-1")
+df202406 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202406_filled.csv", encoding="ISO-8859-1")
+df202407 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202407_filled.csv", encoding="ISO-8859-1")
+df202408 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202408.csv", encoding="ISO-8859-1")
+df202409 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202409.csv", encoding="ISO-8859-1")
+df202410 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202410.csv", encoding="ISO-8859-1")
+df202411 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202411.csv", encoding="ISO-8859-1")
+df202412 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202412.csv", encoding="ISO-8859-1")
+
+# =========================
+# 2025 Sold Files
+# =========================
+
+df202501 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202501_filled.csv", encoding="ISO-8859-1")
+df202502 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202502.csv", encoding="ISO-8859-1")
+df202503 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202503.csv", encoding="ISO-8859-1")
+df202504 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202504.csv", encoding="ISO-8859-1")
+df202505 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202505.csv", encoding="ISO-8859-1")
+df202506 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202506.csv", encoding="ISO-8859-1")
+df202507 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202507.csv", encoding="ISO-8859-1")
+df202508 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202508.csv", encoding="ISO-8859-1")
+df202509 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202509.csv", encoding="ISO-8859-1")
+df202510 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202510.csv", encoding="ISO-8859-1")
+df202511 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202511.csv", encoding="ISO-8859-1")
+df202512 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202512.csv", encoding="ISO-8859-1")
+
+
+# =========================
+# 2026 Sold Files
+# =========================
+
+df202601 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202601.csv", encoding="ISO-8859-1")
+df202602 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202602.csv", encoding="ISO-8859-1")
+df202603 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202603.csv", encoding="ISO-8859-1")
+df202604 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202604.csv", encoding="ISO-8859-1")
+df202605 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202605.csv", encoding="ISO-8859-1")
+df202606 = pd.read_csv("C:/Users/Ranat/Desktop/IDX_Intern/csv/CRMLSSold202606.csv", encoding="ISO-8859-1")
+
+
+sold_monthly_files = [
+    df202401, df202402, df202403, df202404, df202405, df202406,
+    df202407, df202408, df202409, df202410, df202411, df202412,
+
+    df202501, df202502, df202503, df202504, df202505, df202506,
+    df202507, df202508, df202509, df202510, df202511, df202512,
+
+    df202601, df202602, df202603, df202604, df202605, df202606
+]
+
+print("====================================")
+print("LISTING ROW COUNTS BEFORE CONCATENATION")
+print("====================================")
+
+for i, df in enumerate(sold_monthly_files, start = 1): 
+    print(f"Sold file {i}: {len(df)} rows")
+
+
+total_count = 0
+for dataframe in sold_monthly_files: 
+    total_count += len(dataframe)
+print(f"Sold file count before concatenation: {total_count} rows")
+
+
+sold_files = pd.concat(sold_monthly_files, ignore_index=True)
+print("====================================")
+print("LISTING ROW COUNTS AFTER CONCATENATION")
+print("====================================")
+
+print(f"Sold file count after concatenation: {len(sold_files)}")
+
+
+print("====================================")
+print("LISTING ROW COUNTS BEFORE RESIDENTIAL FILTER")
+print("====================================")
+print(f"Sold file count after concatenation: {len(sold_files)}")
+
+combined_df = sold_files.copy() # deep copy so can't change og copy 
+combined_df = combined_df[combined_df.PropertyType == 'Residential'] # filter's out rows where Property Type col = Residential 
+
+new_sold_df = combined_df.copy() 
+
+print("====================================")
+print("LISTING ROW COUNTS AFTER RESIDENTIAL FILTER")
+print("====================================")
+print(f"Sold file count after concatenation: {len(new_sold_df)}")
+
+
+new_sold_df.to_csv("C:/Users/Ranat/Desktop/IDX_Intern/py/newsold.csv", index = False)
+
+
+
+
+
+
+# index = False, ignore_index = True
+# and whole last part what each step do! 
+
+
+
+
+
+
